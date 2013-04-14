@@ -55,5 +55,3 @@ sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_bashrc ~/.bashrc
 sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_vimrc.after ~/.vimrc.after
 sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/vim/colors ~/.vim/colors
 sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/janus ~/.janus
-
-sudo -u $SUDO_USER source .bashrc
