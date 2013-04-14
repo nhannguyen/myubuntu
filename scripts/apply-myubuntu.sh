@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install some basic packages
-packages="git git-core vim build-essential rake"
+packages="git git-core vim build-essential rake curl"
 
 # Add virtual box repo if not added
 if [ ! -f /etc/apt/source.list.d/virtualbox.list ]
