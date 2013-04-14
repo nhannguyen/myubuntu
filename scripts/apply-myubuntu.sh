@@ -21,7 +21,7 @@ fi
 
 # Install vagrant
 apt-get install -y linux-headers-$(uname -r) dkms virtualbox-4.2 rubygems ruby-dev
-gem install vagrant
+gem install vagrant --no-rdoc --no-ri
 
 terminal_dotfiles=(".bashrc" ".bash_aliases" ".vimrc.after")
 linked_directories=("scripts" ".janus" ".vim/colors")
