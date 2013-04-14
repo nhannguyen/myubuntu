@@ -13,7 +13,7 @@ apt-get update
 apt-get install -y $packages
 
 # Install janus vim
-if [ ! -f ~/.vim/installed ]
+if [ ! -f /home/$SUDO_USER/.vim/installed ]
 then
   sudo -u $SUDO_USER curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $SUDO_USER bash
   sudo -u $SUDO_USER touch .vim/installed
@@ -36,10 +36,7 @@ do
   then
     mv .$dotfile .$dotfile.old
   fi
-  sudo -u $SUDO_USER ln -s ~/myubuntu/terminal_dotfiles/_$dotfile ~/.$dotfile
-  #sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_bashrc ~/.bashrc
-  #sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_vimrc.after ~/.vimrc.after
-  #sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_gitconfig ~/.gitconfig
+  sudo -u $SUDO_USER ln -s /home/$SUDO_USER/myubuntu/terminal_dotfiles/_$dotfile /home/$SUDO_USER/.$dotfile
 done
 
 for terminal_directory in "${terminal_directories[@]}"
@@ -51,8 +48,5 @@ do
   then
     mv .$terminal_directory .$terminal_directory.old
   fi
-  sudo -u $SUDO_USER ln -s ~/myubuntu/terminal_directories/$terminal_directory .$terminal_directory
-  #sudo -u $SUDO_USER ln -s ~/myubuntu/scripts ~/scripts
-  #sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/vim/colors ~/.vim/colors
-  #sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/janus ~/.janus
+  sudo -u $SUDO_USER ln -s /home/$SUDO_USER/myubuntu/terminal_directories/$terminal_directory .$terminal_directory
 done
