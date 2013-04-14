@@ -15,8 +15,8 @@ apt-get install -y $packages
 # Install janus vim
 if [ ! -f ~/.vim/installed ]
 then
-  sudo -u $USER curl -Lo- http://bit.ly/janus-bootstrap | bash
-  sudo -u $USER touch .vim/installed
+  sudo -u $SUDO_USER curl -Lo- http://bit.ly/janus-bootstrap | bash
+  sudo -u $SUDO_USER touch .vim/installed
 fi
 
 # Install vagrant
@@ -26,7 +26,7 @@ gem install vagrant
 terminal_dotfiles=(".bashrc" ".bash_aliases" ".vimrc.after")
 linked_directories=("scripts" ".janus" ".vim/colors")
 
-cd /home/$USER
+cd /home/$SUDO_USER
 for dotfile in "${terminal_dotfiles[@]}"
 do
   if [ -h $dotfile ]
@@ -49,11 +49,11 @@ do
   fi
 done
 
-sudo -u $USER ln -s ~/myubuntu/terminal/_bash_aliases ~/.bash_aliases
-sudo -u $USER ln -s ~/myubuntu/scripts ~/scripts
-sudo -u $USER ln -s ~/myubuntu/terminal/_bashrc ~/.bashrc
-sudo -u $USER ln -s ~/myubuntu/terminal/_vimrc.after ~/.vimrc.after
-sudo -u $USER ln -s ~/myubuntu/terminal/vim/colors ~/.vim/colors
-sudo -u $USER ln -s ~/myubuntu/terminal/janus ~/.janus
+sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_bash_aliases ~/.bash_aliases
+sudo -u $SUDO_USER ln -s ~/myubuntu/scripts ~/scripts
+sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_bashrc ~/.bashrc
+sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/_vimrc.after ~/.vimrc.after
+sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/vim/colors ~/.vim/colors
+sudo -u $SUDO_USER ln -s ~/myubuntu/terminal/janus ~/.janus
 
-sudo -u $USER source .bashrc
+sudo -u $SUDO_USER source .bashrc
