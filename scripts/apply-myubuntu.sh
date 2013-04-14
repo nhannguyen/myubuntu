@@ -20,7 +20,7 @@ then
 fi
 
 # Install vagrant
-apt-get install linux-headers-$(uname -r) dkms virtualbox-4.2 rubygems ruby-dev
+apt-get install -y linux-headers-$(uname -r) dkms virtualbox-4.2 rubygems ruby-dev
 gem install vagrant
 
 terminal_dotfiles=(".bashrc" ".bash_aliases" ".vimrc.after")
