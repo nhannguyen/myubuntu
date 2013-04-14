@@ -15,7 +15,7 @@ apt-get install -y $packages
 # Install janus vim
 if [ ! -f ~/.vim/installed ]
 then
-  sudo -u $SUDO_USER curl -Lo- http://bit.ly/janus-bootstrap | bash
+  sudo -u $SUDO_USER curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $SUDO_USER bash
   sudo -u $SUDO_USER touch .vim/installed
 fi
 
