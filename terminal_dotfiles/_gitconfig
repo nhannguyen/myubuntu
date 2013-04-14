@@ -1,0 +1,9 @@
+[user]
+  name = Nhan Nguyen
+  email = ducnhan813@gmail.com
+[color]
+  ui = true
+[core]
+  editor = vim
+[merge]
+  tool = vimdiff
