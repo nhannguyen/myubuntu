@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Default VM name is test
+if [ "$1" == "" ]
+then
+  H="test"
+else
+  H=$1
+fi
+
+#
+# Default OS is precise32
+# For now I have the following list of boxes:
+#   centos6
+#   debian32
+#   lucid32
+#   precise32
+#   precise64
+#
+if [ "$2" == "" ]
+then
+  OS="precise32"
+else
+  OS=$2
+fi
+mkdir -p $H/chef/site-cookbooks
+cd $H
+vagrant init $OS
+ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks
+ln -s ~/cogini/chef-repo chef/chef-repo
