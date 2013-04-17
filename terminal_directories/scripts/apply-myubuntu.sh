@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install some basic packages
-packages="git git-core vim build-essential rake curl"
+packages="git git-core vim build-essential rake curl tmux"
 
 # Add virtual box repo if not added
 if [ ! -f /etc/apt/source.list.d/virtualbox.list ]
