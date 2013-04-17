@@ -23,7 +23,7 @@ fi
 apt-get install -y linux-headers-$(uname -r) dkms virtualbox-4.2 rubygems ruby-dev
 gem install vagrant --no-rdoc --no-ri
 
-terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "gitconfig")
+terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "gitconfig" "tmux.conf")
 terminal_directories=("scripts" "janus" "vim/colors")
 
 cd /home/$SUDO_USER
