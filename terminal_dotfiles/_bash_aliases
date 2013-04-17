@@ -9,7 +9,7 @@ alias ga='git add'
 alias gp='git pull'
 alias gpush='git push'
 alias gstat='git status'
-alias gcom='git commit -am'
+alias gcom='git commit -m'
 
 # SimpleHTTPServer python to easily share files
 alias http='python -m SimpleHTTPServer'
