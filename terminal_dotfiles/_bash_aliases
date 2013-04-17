@@ -13,3 +13,7 @@ alias gcom='git commit -m'
 
 # SimpleHTTPServer python to easily share files
 alias http='python -m SimpleHTTPServer'
+
+# Aliases for tmux
+alias attach='tmux attach'
+alias detach='tmux detach'
