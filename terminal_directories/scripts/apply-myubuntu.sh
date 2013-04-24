@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Install some basic packages
 packages="git git-core vim build-essential rake curl tmux"
 
