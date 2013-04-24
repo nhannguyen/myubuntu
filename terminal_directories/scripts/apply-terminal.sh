@@ -1,9 +1,16 @@
 #!/bin/bash
 
+if [ -z "$SUDO_USER" ]
+then
+  U=$USER
+else
+  U=$SUDO_USER
+fi
+
 terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "gitconfig" "tmux.conf")
 terminal_directories=("scripts" "janus" "vim/colors")
 
-cd /home/$SUDO_USER
+cd /home/$U
 for dotfile in "${terminal_dotfiles[@]}"
 do
   if [ -h .$dotfile ]
@@ -13,7 +20,7 @@ do
   then
     mv .$dotfile .$dotfile.old
   fi
-  sudo -u $SUDO_USER ln -s /home/$SUDO_USER/myubuntu/terminal_dotfiles/_$dotfile /home/$SUDO_USER/.$dotfile
+  sudo -u $U ln -s /home/$U/myubuntu/terminal_dotfiles/_$dotfile /home/$U/.$dotfile
 done
 
 for terminal_directory in "${terminal_directories[@]}"
@@ -25,5 +32,5 @@ do
   then
     mv .$terminal_directory .$terminal_directory.old
   fi
-  sudo -u $SUDO_USER ln -s /home/$SUDO_USER/myubuntu/terminal_directories/$terminal_directory .$terminal_directory
+  sudo -u $U ln -s /home/$U/myubuntu/terminal_directories/$terminal_directory .$terminal_directory
 done
