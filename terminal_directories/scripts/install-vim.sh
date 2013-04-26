@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ ! -f /home/$SUDO_USER/.vim/installed ]
 then
   apt-get install -y curl rake
