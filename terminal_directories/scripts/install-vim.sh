@@ -1,15 +1,8 @@
 #!/bin/bash
 
-if [ -z "$SUDO_USER" ]
+if [ ! -f /home/$SUDO_USER/.vim/installed ]
 then
-  U=$USER
-else
-  U=$SUDO_USER
-fi
-
-
-if [ ! -f /home/$U/.vim/installed ]
-then
-  sudo -u $U curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $U bash
-  sudo -u $U touch .vim/installed
+  apt-get install -y curl
+  sudo -u $SUDO_USER curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $SUDO_USER bash
+  sudo -u $SUDO_USER touch .vim/installed
 fi
