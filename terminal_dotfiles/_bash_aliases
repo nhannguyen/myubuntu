@@ -7,7 +7,7 @@ function mycd() {
   fi
   cd $dir
   count=`la | wc -l`
-  if [ ! $count -gt 50 ]
+  if [ ! $count -gt 80 ]
   then
     la
   else
