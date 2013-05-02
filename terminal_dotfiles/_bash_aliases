@@ -1,5 +1,12 @@
 function mycd() {
-  cd $1 && la
+  count=`la $1 | wc -l`
+  if [ ! $count -gt 50 ]
+  then
+    cd $1 && la
+  else
+    cd $1
+    echo "$count files and directories"
+  fi
 }
 alias cd=mycd
 alias lr='ls -R'
