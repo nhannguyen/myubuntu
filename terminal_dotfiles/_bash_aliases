@@ -1,10 +1,16 @@
 function mycd() {
-  count=`la $1 | wc -l`
+  if [ $# -eq 0 ]
+  then
+    dir="/home/$USER"
+  else
+    dir=$1
+  fi
+  cd $dir
+  count=`la | wc -l`
   if [ ! $count -gt 50 ]
   then
-    cd $1 && la
+    la
   else
-    cd $1
     echo "$count files and directories"
   fi
 }
