@@ -20,9 +20,12 @@ apt-get install -y $packages
   #sudo -u $SUDO_USER curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $SUDO_USER bash
   #sudo -u $SUDO_USER touch .vim/installed
 #fi
-myubuntu/terminal_directories/scripts/install-vim.sh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+$DIR/install-vim.sh
 # Install vagrant
 #apt-get install -y linux-headers-$(uname -r) dkms virtualbox-4.2 rubygems ruby-dev
 #gem install vagrant --no-rdoc --no-ri
-myubuntu/terminal_directories/scripts/install-vagrant.sh
-myubuntu/terminal_directories/scripts/apply-terminal.sh
+$DIR/install-vagrant.sh
+$DIR/apply-terminal.sh

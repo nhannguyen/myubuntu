@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo $DIR
+
 if [ -z "$SUDO_USER" ]
 then
   U=$USER
@@ -20,7 +23,7 @@ do
   then
     mv .$dotfile .$dotfile.old
   fi
-  sudo -u $U ln -s /home/$U/myubuntu/terminal_dotfiles/_$dotfile /home/$U/.$dotfile
+  sudo -u $U ln -s $DIR/../../terminal_dotfiles/_$dotfile /home/$U/.$dotfile
 done
 
 for terminal_directory in "${terminal_directories[@]}"
@@ -32,5 +35,5 @@ do
   then
     mv .$terminal_directory .$terminal_directory.old
   fi
-  sudo -u $U ln -s /home/$U/myubuntu/terminal_directories/$terminal_directory .$terminal_directory
+  sudo -u $U ln -s $DIR/../../terminal_directories/$terminal_directory /home/$U/.$terminal_directory
 done
