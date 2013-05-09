@@ -11,5 +11,4 @@ REQUIREMENT
 TODO
 =======
 
-- A main installation scripts (selective installation script?).
 - Text and color for each block of command

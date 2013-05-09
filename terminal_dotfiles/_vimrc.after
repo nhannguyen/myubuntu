@@ -5,12 +5,12 @@ set showcmd " Display incomplete commands
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Colors scheme
-if $TERM == "xterm-256color"
+"if $TERM == "xterm-256color"
   set t_Co=256
-endif
-if $TERM == "screen-256color"
-  set t_Co=256
-endif
+"endif
+"if $TERM == "screen-256color"
+"  set t_Co=256
+"endif
 colorscheme jellybeans+
 
 " Keep cursor at the middle of the screen

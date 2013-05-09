@@ -10,10 +10,12 @@ else
   U=$SUDO_USER
 fi
 
-terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "gitconfig" "tmux.conf")
-terminal_directories=("scripts" "janus" "vim/colors")
+home_dir=$(getent passwd "$U" | cut -d: -f 6)
 
-cd /home/$U
+terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "gitconfig" "tmux.conf")
+terminal_directories=("scripts")
+
+cd $home_dir
 for dotfile in "${terminal_dotfiles[@]}"
 do
   if [ -h .$dotfile ]
@@ -23,7 +25,7 @@ do
   then
     mv .$dotfile .$dotfile.old
   fi
-  sudo -u $U ln -s $target/../../terminal_dotfiles/_$dotfile /home/$U/.$dotfile
+  sudo -u $U ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
 done
 
 for terminal_directory in "${terminal_directories[@]}"
@@ -35,5 +37,5 @@ do
   then
     mv .$terminal_directory .$terminal_directory.old
   fi
-  sudo -u $U ln -s $target/../../terminal_directories/$terminal_directory /home/$U/.$terminal_directory
+  sudo -u $U ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done
