@@ -1,7 +1,7 @@
 function mycd() {
   if [ $# -eq 0 ]
   then
-    dir=$(getent passwd "$U" | cut -d: -f 6)
+    dir=$(getent passwd "$USER" | cut -d: -f 6)
   else
     dir=$1
   fi
