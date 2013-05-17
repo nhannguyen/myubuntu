@@ -1,4 +1,14 @@
 #!/bin/bash
 
+set -e
+
 # Clean old package configuration files
-dpkg -l | awk '/^rc/{ print $2}' | xargs dpkg --purge
+packages=`dpkg -l | awk '/^rc/{ print $2}'`
+#dpkg -l | awk '/^rc/{ print $2}' | xargs dpkg --purge
+if [[ $? -eq 0 ]]
+then
+  echo "No old configurations found"
+else
+  xargs dpkg --purge $packages
+  echo "Finished cleaning"
+fi
