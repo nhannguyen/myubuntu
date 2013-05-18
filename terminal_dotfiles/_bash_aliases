@@ -14,8 +14,12 @@ function mycd() {
     echo "$count files and directories"
   fi
 }
+
+# General aliases
 alias cd=mycd
 alias lr='ls -R'
+
+# Aliases for git
 alias glog='git log --graph --decorate --oneline'
 alias gremote='git remote'
 alias ga='git add'
@@ -33,3 +37,6 @@ alias detach='tmux detach'
 
 # Aliases for chef
 alias chef-solo='sudo chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json'
+
+# Update ubuntu
+alias update='sudo apt-get update && sudo apt-get -y upgrade'
