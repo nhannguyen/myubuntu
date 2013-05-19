@@ -46,13 +46,16 @@ alias lr='ls -R'
 alias download='mydownload'
 
 # Aliases for git
-alias glog='git log --graph --decorate --oneline'
-alias gremote='git remote'
-alias ga='git add'
-alias gp='git pull'
-alias gpush='git push'
-alias gstat='git status'
-alias gcom='git commit -m'
+alias log='git log --graph --decorate --oneline'
+alias detail='git log'
+alias remote='git remote'
+alias a='git add'
+alias pull='git pull'
+alias push='git push'
+alias stat='git status'
+alias commit='git commit -m'
+alias merge='git merge'
+alias fetch='git fetch'
 
 # SimpleHTTPServer python to easily share files
 alias http='python -m SimpleHTTPServer'
