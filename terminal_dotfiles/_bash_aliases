@@ -52,10 +52,12 @@ alias remote='git remote'
 alias a='git add'
 alias pull='git pull'
 alias push='git push'
-alias stat='git status'
+alias status='git status'
 alias commit='git commit -m'
 alias merge='git merge'
 alias fetch='git fetch'
+alias checkout='git checkout'
+alias branch='git branch'
 
 # SimpleHTTPServer python to easily share files
 alias http='python -m SimpleHTTPServer'
