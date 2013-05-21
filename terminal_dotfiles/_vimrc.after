@@ -117,7 +117,7 @@ if has("autocmd")
       \   unlet oldma | unlet oldro |
       \ endif
 
-    " after writing a binary file, if we're in hex mode, restore hex modei
+    " after writing a binary file, if we're in hex mode, restore hex mode
     au BufWritePost *
       \ if exists("b:editHex") && b:editHex && &binary |
       \   let oldro=&ro | let &ro=0 |
