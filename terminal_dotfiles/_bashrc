@@ -113,7 +113,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # More PATH
-JAVA=/usr/local/jdk1.7.0_21/bin
+if [[ -d /usr/local/jdk1.7.0_21/bin ]]
+then
+  JAVA=/usr/local/jdk1.7.0_21/bin
+fi
 SCRIPTS=/home/$USER/.scripts
 # Prevent tmux from export the path again
 if [ "$_SKIP_PROFILE" ]
@@ -122,4 +125,10 @@ then
 else
   export _SKIP_PROFILE=y
 fi
-export PATH=$PATH:$JAVA:$SCRIPTS
+# No need to add java if it is not installed
+if [[ -z "$JAVA" ]]
+then
+  export PATH=$PATH:$SCRIPTS
+else
+  export PATH=$PATH:$JAVA:$SCRIPTS
+fi
