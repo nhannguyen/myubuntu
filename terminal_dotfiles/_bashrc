@@ -112,10 +112,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# Add Java to Path
-export JAVA_HOME=/usr/local/jdk1.7.0_21
-export PATH=$PATH:$JAVA_HOME/bin
-
-# Add my scripts to Path
-export SCRIPTS=/home/$USER/.scripts
-export PATH=$PATH:$SCRIPTS
+# More PATH
+JAVA=/usr/local/jdk1.7.0_21/bin
+SCRIPTS=/home/$USER/.scripts
+# Prevent tmux from export the path again
+if [ "$_SKIP_PROFILE" ]
+then
+  return 0
+else
+  export _SKIP_PROFILE=y
+fi
+export PATH=$PATH:$JAVA:$SCRIPTS
