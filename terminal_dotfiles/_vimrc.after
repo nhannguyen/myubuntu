@@ -1,34 +1,36 @@
 set nocompatible
 set showcmd " Display incomplete commands
 
+
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+
 " Colors scheme
-if $TERM == "xterm-256color"
+if $TERM == "xterm-256color" || $TERM == "screen-256color"
   set t_Co=256
 endif
-
-if $TERM == "screen-256color"
-  set t_Co=256
-endif
-
 colorscheme jellybeans+
+
 
 " Keep cursor at the middle of the screen
 set scrolloff=999
 
+
 " Highlight current line
 set cursorline
 hi CursorLine cterm=bold
+
 
 " Show hiddden files in NERDTree
 let NERDTreeShowHidden=1
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
+
 " Override line number color
 "highlight LineNr ctermfg=gray
+
 
 " Key mappings
 nnoremap <c-j> <c-w>j
@@ -38,8 +40,9 @@ nnoremap <c-h> <c-w>h
 " Map escape key to jj -- much faster
 imap jj <esc>
 
+
+" Vim as a hex editor
 nnoremap <F8> :call ToggleHex()<CR>
-" helper function to toggle hex mode
 function ToggleHex()
   " hex mode should be considered a read-only operation
   " save values for modified and read-only for restoration later,
