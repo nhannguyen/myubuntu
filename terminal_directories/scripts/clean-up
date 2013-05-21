@@ -9,6 +9,6 @@ if [[ $packages == "" ]]
 then
   echo "No old configurations found"
 else
-  dpkg -l | awk '/^rc/{ print $2}' | xargs dpkg --purge $packages
+  xargs dpkg --purge $packages
   echo "Finished cleaning"
 fi
