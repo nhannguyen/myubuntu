@@ -6,6 +6,8 @@ function mycd {
     dir=$1
   fi
   cd $dir
+  size=`du -sh | awk '{print $1}'`
+  echo "Total size: $size"
   count=`la | wc -l`
   if [[ ! $count -gt 80 ]]
   then
