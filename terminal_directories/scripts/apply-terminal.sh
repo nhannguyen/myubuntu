@@ -29,6 +29,7 @@ cd $home_dir
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
 echo -e "${green}Cloning powerline source${white}"
 sudo -u $U -H pip install --user git+git://github.com/Lokaltog/powerline
+
 if [[ ! -f /home/$U/.fonts/PowerlineSymbols.otf ]]
 then
   echo -e "${green}Downloading PowerlineSymbols.otf font${white}"
@@ -37,6 +38,7 @@ then
   mv PowerlineSymbols.otf /home/$U/.fonts/
   sudo -u $U -H fc-cache -vf /home/$U/.fonts
 fi
+
 if [[ ! -f /home/$U/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]
 then
   echo -e "${green}Downloading Powerline fontconfig${white}"
@@ -44,20 +46,33 @@ then
   sudo -u $U -H mkdir -p /home/$U/.config/fontconfig/conf.d/
   mv 10-powerline-symbols.conf /home/$U/.config/fontconfig/conf.d/
 fi
+
 echo -e "${green}Copying powerline configuration files${white}"
+
 if [[ ! -d /home/$U/.config/powerline ]]
 then
   sudo -u $U -H mkdir /home/$U/.config/powerline
   sudo -u $U -H cp -R /home/$U/.local/lib/python2.7/site-packages/powerline/config_files/* /home/$U/.config/powerline
 fi
-if [[ -f /home/$U/.config/powerline/themes/shell/default_leftonly.json ]]
+
+if [[ -f /home/$U/.config/powerline/themes/shell/default.json ]]
 then
-  mv /home/$U/.config/powerline/themes/shell/default_leftonly.json /home/$U/.config/powerline/themes/shell/default_leftonly.json.old
-elif [[ -h /home/$U/.config/powerline/themes/shell/default_leftonly.json ]]
+  mv /home/$U/.config/powerline/themes/shell/default.json /home/$U/.config/powerline/themes/shell/default.json.old
+elif [[ -h /home/$U/.config/powerline/themes/shell/default.json ]]
 then
-  rm /home/$U/.config/powerline/themes/shell/default_leftonly.json
+  rm /home/$U/.config/powerline/themes/shell/default.json
 fi
-sudo -u $U -H ln -s $target/../../powerline_config/default_leftonly.json /home/$U/.config/powerline/themes/shell/default_leftonly.json
+
+if [[ -f /home/$U/.config/powerline/colorschemes/shell/default.json ]]
+then
+  mv /home/$U/.config/powerline/colorschemes/shell/default.json /home/$U/.config/powerline/colorschemes/shell/default.json.old
+elif [[ -h /home/$U/.config/powerline/colorschemes/shell/default.json ]]
+then
+  rm /home/$U/.config/powerline/colorschemes/shell/default.json
+fi
+
+sudo -u $U -H ln -s $target/../../powerline_config/theme.default.json /home/$U/.config/powerline/themes/shell/default.json
+sudo -u $U -H ln -s $target/../../powerline_config/colorschemes.default.json /home/$U/.config/powerline/colorschemes/shell/default.json
 
 echo -e "${green}Linking dotfiles${white}"
 for dotfile in "${terminal_dotfiles[@]}"
