@@ -50,14 +50,22 @@ then
   sudo -u $U -H mkdir /home/$U/.config/powerline
   sudo -u $U -H cp -R /home/$U/.local/lib/python2.7/site-packages/powerline/config_files/* /home/$U/.config/powerline
 fi
+if [[ -f /home/$U/.config/powerline/themes/shell/default_leftonly.json ]]
+then
+  mv /home/$U/.config/powerline/themes/shell/default_leftonly.json /home/$U/.config/powerline/themes/shell/default_leftonly.json.old
+elif [[ -h /home/$U/.config/powerline/themes/shell/default_leftonly.json ]]
+then
+  rm /home/$U/.config/powerline/themes/shell/default_leftonly.json
+fi
+sudo -u $U -H ln -s $target/../../powerline_config/default_leftonly.json /home/$U/.config/powerline/themes/shell/default_leftonly.json
 
 echo -e "${green}Linking dotfiles${white}"
 for dotfile in "${terminal_dotfiles[@]}"
 do
-  if [ -h .$dotfile ]
+  if [[ -h .$dotfile ]]
   then
     rm .$dotfile
-  elif [ -f .$dotfile ]
+  elif [[ -f .$dotfile ]]
   then
     mv .$dotfile .$dotfile.old
   fi
