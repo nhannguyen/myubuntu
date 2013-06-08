@@ -18,11 +18,11 @@ terminal_directories=("scripts")
 cd $home_dir
 
 # Install powerline plugin
-pip install --user git+git://github.com/Lokaltog/powerline
-wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
-fc-cache -vf ~/.fonts
-mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+sudo -u $U -H pip install --user git+git://github.com/Lokaltog/powerline
+sudo -u $U -H wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+sudo -u $U -H mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
+sudo -u $U -H fc-cache -vf ~/.fonts
+sudo -u $U -H mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 
 for dotfile in "${terminal_dotfiles[@]}"
 do
