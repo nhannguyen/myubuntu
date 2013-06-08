@@ -36,7 +36,6 @@ then
   sudo -u $U -H wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
   sudo -u $U -H mkdir -p /home/$U/.fonts/
   mv PowerlineSymbols.otf /home/$U/.fonts/
-  sudo -u $U -H fc-cache -vf /home/$U/.fonts
 fi
 
 if [[ ! -f /home/$U/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]
