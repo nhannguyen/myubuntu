@@ -101,6 +101,10 @@ then
   JAVA=/usr/local/jdk1.7.0_21/bin
 fi
 SCRIPTS=/home/$USER/.scripts
+if [[ -f /home/$USER/.local/bin/powerline ]]
+then
+  POWERLINE=/home/$USER/.local/bin
+fi
 # Prevent tmux from export the path again
 if [ "$_SKIP_PROFILE" ]
 then
@@ -113,4 +117,13 @@ if [[ ! -z "$JAVA" ]]
 then
   PATH=$PATH:$JAVA
 fi
+# Powerline too
+if [[ ! -z "$POWERLINE" ]]
+then
+  PATH=$PATH:$POWERLINE
+fi
 export PATH=$PATH:$SCRIPTS
+if [[ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]]
+then
+  source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+fi

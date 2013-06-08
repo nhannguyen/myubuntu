@@ -12,10 +12,18 @@ fi
 
 home_dir=$(getent passwd "$U" | cut -d: -f 6)
 
-terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "gitconfig" "tmux.conf")
+terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
 cd $home_dir
+
+# Install powerline plugin
+pip install --user git+git://github.com/Lokaltog/powerline
+wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
+fc-cache -vf ~/.fonts
+mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+
 for dotfile in "${terminal_dotfiles[@]}"
 do
   if [ -h .$dotfile ]

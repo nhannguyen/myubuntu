@@ -33,7 +33,7 @@ else
 fi
 
 # Install some basic packages
-packages="git git-core vim build-essential rake curl tmux htop"
+packages="git git-core vim build-essential rake curl tmux htop python-pip"
 
 apt-get update
 apt-get install -y $packages
