@@ -2,12 +2,16 @@
 
 set -e
 
+green='\e[0;32m'
+white='\e[1;37m'
+red='\e[0;31m'
+
 vim=0
 vagrant=0
 
 if [[ $# -gt 2 ]]
 then
-  echo "Unsupported"
+  echo -e "${red}Unsupported${white}"
   return 1
 elif [[ $# -eq 0 ]]
 then
@@ -16,7 +20,7 @@ then
 else
   if [[ $1 == $2 ]]
   then
-    echo "Please select different componets to install"
+    echo -e "${red}Please select different componets to install${white}"
     return 1
   else
     if [[ $1 == "vim" || $2 == "vim" ]]
@@ -26,14 +30,14 @@ else
     then
       vagrant=1
     else
-      echo "Currently support vim and vagrant only"
+      echo -e "${red}Currently support vim and vagrant only${white}"
       return 1
     fi
   fi
 fi
 
 # Install some basic packages
-packages="git git-core vim build-essential rake curl tmux htop python-pip"
+packages="git git-core build-essential htop"
 
 apt-get update
 apt-get install -y $packages

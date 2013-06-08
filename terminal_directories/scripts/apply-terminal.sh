@@ -1,5 +1,10 @@
 #!/bin/bash
 
+set -e
+
+green='\e[0;32m'
+white='\e[1;37m'
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 target=$(readlink -f "$DIR")
 
@@ -15,15 +20,38 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
+echo -e "${green}Installing necessary packages${white}"
+packages="python-pip tmux"
+apt-get install -y $packages
+
 cd $home_dir
 
-# Install powerline plugin
+echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
+echo -e "${green}Cloning powerline source${white}"
 sudo -u $U -H pip install --user git+git://github.com/Lokaltog/powerline
-sudo -u $U -H wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-sudo -u $U -H mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
-sudo -u $U -H fc-cache -vf ~/.fonts
-sudo -u $U -H mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+if [[ ! -f /home/$U/.fonts/PowerlineSymbols.otf ]]
+then
+  echo -e "${green}Downloading PowerlineSymbols.otf font${white}"
+  sudo -u $U -H wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
+  sudo -u $U -H mkdir -p /home/$U/.fonts/
+  mv PowerlineSymbols.otf /home/$U/.fonts/
+  sudo -u $U -H fc-cache -vf /home/$U/.fonts
+fi
+if [[ ! -f /home/$U/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]
+then
+  echo -e "${green}Downloading Powerline fontconfig${white}"
+  sudo -u $U -H wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+  sudo -u $U -H mkdir -p /home/$U/.config/fontconfig/conf.d/
+  mv 10-powerline-symbols.conf /home/$U/.config/fontconfig/conf.d/
+fi
+echo -e "${green}Copying powerline configuration files${white}"
+if [[ ! -d /home/$U/.config/powerline ]]
+then
+  sudo -u $U -H mkdir /home/$U/.config/powerline
+  sudo -u $U -H cp -R /home/$U/.local/lib/python2.7/site-packages/powerline/config_files/* /home/$U/.config/powerline
+fi
 
+echo -e "${green}Linking dotfiles${white}"
 for dotfile in "${terminal_dotfiles[@]}"
 do
   if [ -h .$dotfile ]
