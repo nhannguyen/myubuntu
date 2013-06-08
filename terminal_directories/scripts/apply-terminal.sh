@@ -71,8 +71,17 @@ then
   rm /home/$U/.config/powerline/colorschemes/shell/default.json
 fi
 
+if [[ -f /home/$U/.config/powerline/themes/tmux/default.json ]]
+then
+  mv /home/$U/.config/powerline/themes/tmux/default.json /home/$U/.config/powerline/themes/tmux/default.json.old
+elif [[ -h /home/$U/.config/powerline/themes/tmux/default.json ]]
+then
+  rm /home/$U/.config/powerline/themes/tmux/default.json
+fi
+
 sudo -u $U -H ln -s $target/../../powerline_config/theme.default.json /home/$U/.config/powerline/themes/shell/default.json
 sudo -u $U -H ln -s $target/../../powerline_config/colorschemes.default.json /home/$U/.config/powerline/colorschemes/shell/default.json
+sudo -u $U -H ln -s $target/../../powerline_config/tmux.theme.default.json /home/$U/.config/powerline/themes/tmux/default.json
 
 echo -e "${green}Linking dotfiles${white}"
 for dotfile in "${terminal_dotfiles[@]}"
