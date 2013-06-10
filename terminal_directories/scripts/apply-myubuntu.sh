@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x verbose
 
 green='\e[0;32m'
 white='\e[1;37m'
@@ -39,6 +40,7 @@ fi
 # Install some basic packages
 packages="git git-core build-essential htop"
 
+echo -e "${green}Installing basic packages${white}"
 apt-get update
 apt-get install -y $packages
 

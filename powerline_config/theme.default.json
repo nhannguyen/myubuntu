@@ -20,10 +20,6 @@
 	"segments": {
 		"left": [
 			{
-				"name": "last_status",
-				"module": "powerline.segments.shell"
-			},
-			{
 				"name": "hostname"
 			},
 			{
@@ -41,6 +37,10 @@
           "dir_shorten_len": 1,
           "use_path_separator": true
 				}
+			},
+			{
+				"name": "last_status",
+				"module": "powerline.segments.shell"
 			}
 		]
 	}

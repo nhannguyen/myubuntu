@@ -1,4 +1,9 @@
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-
 " Always show statusline
 set laststatus=2
+
+" Colors scheme
+if $TERM == "xterm-256color" || $TERM == "screen-256color"
+  set t_Co=256
+endif
+colorscheme jellybeans+
