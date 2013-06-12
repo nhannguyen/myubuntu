@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/bin/bash -x
 
 set -e
-set -x verbose
 
 green='\e[0;32m'
 white='\e[1;37m'
