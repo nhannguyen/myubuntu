@@ -31,7 +31,7 @@ then
 fi
 
 echo -e "${green}Linking vim configuration files${white}"
-terminal_directories=("janus" "vim/colors")
+terminal_directories=("vim/colors")
 
 for terminal_directory in "${terminal_directories[@]}"
 do

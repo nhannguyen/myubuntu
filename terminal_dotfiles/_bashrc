@@ -65,10 +65,7 @@ esac
 
 
 # Enable powerline plugin
-if [[ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]]
-then
-  source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-fi
+source ~/myubuntu/powerline/powerline/bindings/bash/powerline.sh
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
