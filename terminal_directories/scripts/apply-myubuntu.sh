@@ -37,7 +37,7 @@ else
 fi
 
 # Install some basic packages
-packages="git git-core htop"
+packages="git git-core htop tmux"
 
 echo -e "${green}Installing basic packages${white}"
 apt-get update

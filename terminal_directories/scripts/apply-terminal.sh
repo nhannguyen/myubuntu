@@ -23,10 +23,6 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 terminal_dotfiles=("bashrc" "bash_aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
-echo -e "${green}Installing necessary packages${white}"
-packages="tmux"
-apt-get install -y $packages
-
 cd $home_dir
 
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
