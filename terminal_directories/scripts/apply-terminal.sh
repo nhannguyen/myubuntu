@@ -12,8 +12,10 @@ target=$(readlink -f "$DIR")
 if [ -z "$SUDO_USER" ]
 then
   U=$USER
+  su=""
 else
   U=$SUDO_USER
+  su="sudo -u $U -H"
 fi
 
 home_dir=$(getent passwd "$U" | cut -d: -f 6)
@@ -32,13 +34,13 @@ echo -e "${green}Cloning powerline source${white}"
 
 if [[ ! -f $home_dir/.fonts/PowerlineSymbols.otf ]]
 then
-  sudo -u $U -H mkdir -p $home_dir/.fonts/
+  $su mkdir -p $home_dir/.fonts/
   cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/
 fi
 
 if [[ ! -f $home_dir/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]
 then
-  sudo -u $U -H mkdir -p $home_dir/.config/fontconfig/conf.d/
+  $su mkdir -p $home_dir/.config/fontconfig/conf.d/
   cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/
 fi
 
@@ -46,7 +48,7 @@ echo -e "${green}Creating powerline configuration files${white}"
 
 if [[ ! -h $home_dir/.config/powerline ]]
 then
-  sudo -u $U -H ln -s $target/../../powerline_config $home_dir/.config/powerline
+  $su ln -s $target/../../powerline_config $home_dir/.config/powerline
 fi
 
 
@@ -60,7 +62,7 @@ do
   then
     mv .$dotfile .$dotfile.old
   fi
-  sudo -u $U ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
+  $su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
 done
 
 for terminal_directory in "${terminal_directories[@]}"
@@ -72,5 +74,5 @@ do
   then
     mv .$terminal_directory .$terminal_directory.old
   fi
-  sudo -u $U ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
+  $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done
