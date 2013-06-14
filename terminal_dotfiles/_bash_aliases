@@ -43,7 +43,7 @@ function mydownload() {
 # General aliases
 alias cd=mycd
 alias lr='ls -R'
-alias download='mydownload'
+alias download=mydownload
 
 # Aliases for git
 alias log='git log --graph --decorate --oneline'
@@ -75,6 +75,3 @@ alias update='sudo apt-get update && sudo apt-get -y dist-upgrade'
 # Shutdown and reboot
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown -P now'
-
-# Apt-get
-alias install='sudo apt-get install'

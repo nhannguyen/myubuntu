@@ -100,15 +100,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # More PATH
-if [[ -d /usr/local/jdk1.7.0_21/bin ]]
-then
-  JAVA=/usr/local/jdk1.7.0_21/bin
-fi
 SCRIPTS=/home/$USER/.scripts
-if [[ -f /home/$USER/.local/bin/powerline ]]
-then
-  POWERLINE=/home/$USER/.local/bin
-fi
 # Prevent tmux from export the path again
 if [ "$_SKIP_PROFILE" ]
 then
@@ -117,13 +109,4 @@ else
   export _SKIP_PROFILE=y
 fi
 # No need to add java if it is not installed
-if [[ ! -z "$JAVA" ]]
-then
-  PATH=$PATH:$JAVA
-fi
-# Powerline too
-if [[ ! -z "$POWERLINE" ]]
-then
-  PATH=$PATH:$POWERLINE
-fi
 export PATH=$PATH:$SCRIPTS
