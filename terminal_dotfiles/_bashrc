@@ -65,7 +65,10 @@ esac
 
 
 # Enable powerline plugin
-source ~/myubuntu/powerline/powerline/bindings/bash/powerline.sh
+if [ $TERM == "xterm-256color" ]
+then
+  source ~/myubuntu/powerline/powerline/bindings/bash/powerline.sh
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
