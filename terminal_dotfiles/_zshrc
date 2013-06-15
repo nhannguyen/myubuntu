@@ -63,6 +63,20 @@ setopt AUTO_CD
 # beeps are annoying
 setopt NO_BEEP
 
+
+# More PATH
+SCRIPTS=/home/$USER/.scripts
+# Prevent tmux from export the path again
+if [ "$_SKIP_PROFILE" ]
+then
+  return 0
+else
+  export _SKIP_PROFILE=y
+fi
+# No need to add java if it is not installed
+export PATH=$PATH:$SCRIPTS
+
+
 # Syntax highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 source ~/myubuntu/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

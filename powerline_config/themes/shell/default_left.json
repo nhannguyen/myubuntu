@@ -29,20 +29,18 @@
 				"name": "virtualenv"
 			},
 			{
+				"name": "branch"
+			},
+			{
 				"name": "cwd",
 				"args": {
           "dir_shorten_len": 1,
           "use_path_separator": true
 				}
-			}
-		],
-		"right": [
-			{
-				"name": "branch"
 			},
 			{
-				"module": "powerline.segments.shell",
-				"name": "last_pipe_status"
+				"name": "last_status",
+				"module": "powerline.segments.shell"
 			}
 		]
 	}
