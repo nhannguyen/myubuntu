@@ -38,11 +38,11 @@
 		],
 		"right": [
 			{
-				"name": "branch"
-			},
-			{
 				"module": "powerline.segments.shell",
 				"name": "last_pipe_status"
+			},
+			{
+				"name": "branch"
 			}
 		]
 	}
