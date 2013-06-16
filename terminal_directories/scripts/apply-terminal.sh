@@ -42,9 +42,14 @@ fi
 
 echo -e "${green}Creating powerline configuration files${white}"
 
-if [[ ! -h $home_dir/.config/powerline ]]
+if [[ -h $home_dir/.config/powerline ]]
 then
-  $su ln -s $target/../../powerline_config $home_dir/.config/powerline
+  $su rm $home_dir/.config/powerline
+fi
+
+if [[ ! -d $home_dir/.config/powerline ]]
+then
+  $su cp -R $target/../../powerline_config $home_dir/.config/powerline
 fi
 
 
