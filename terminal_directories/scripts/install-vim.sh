@@ -27,7 +27,7 @@ if [ ! -f $home_dir/.vim/installed ]
 then
   apt-get install -y curl rake
   sudo -u $U curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $U bash
-  sudo -u $U touch .vim/installed
+  sudo -u $U touch $home_dir/.vim/installed
 fi
 
 echo -e "${green}Linking vim configuration files${white}"
@@ -35,12 +35,12 @@ terminal_directories=("vim/colors")
 
 for terminal_directory in "${terminal_directories[@]}"
 do
-  if [ -h .$terminal_directory ]
+  if [ -h $home_dir/.$terminal_directory ]
   then
-    rm .$terminal_directory
-  elif [ -d .$terminal_directory ]
+    rm $home_dir/.$terminal_directory
+  elif [ -d $home_dir/.$terminal_directory ]
   then
-    mv .$terminal_directory .$terminal_directory.old
+    mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old
   fi
   sudo -u $U ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done
