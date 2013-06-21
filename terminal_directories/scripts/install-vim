@@ -20,20 +20,26 @@ target=$(readlink -f "$DIR")
 
 home_dir=$(getent passwd "$U" | cut -d: -f 6)
 
+
 # Check required packages
-if [[ `dpkg -l | grep rake` != 0 ]]
+required=""
+dpkg -l | grep rake > /dev/null
+if [[ ! $? -eq 0 ]]
 then
-  echo -e "${red}Missing package rake${white}"
-  exit 2
-elif [[ `dpkg -l | grep curl` != 0 ]]
-then
-  echo -e "${red}Missing package curl${white}"
-  exit 2
-elif [[ `dpkg -l | grep vim` != 0 ]]
-then
-  echo -e "${red}You have to install vim first${white}"
-  exit 2
+  required="$required rake"
 fi
+dpkg -l | grep curl > /dev/null
+if [[ ! $? -eq 0 ]]
+then
+  required="$required curl"
+fi
+dpkg -l | grep vim > /dev/null
+if [[ ! $? -eq 0 ]]
+then
+  required="$required vim"
+fi
+
+echo -e "${red}Missing package(s): $required${white}"
 
 echo -e "${green}Installing janus vim${white}"
 
