@@ -39,7 +39,10 @@ then
   required="$required vim"
 fi
 
-echo -e "${red}Missing package(s): $required${white}"
+if [[ $require != "" ]]
+then
+  echo -e "${red}Missing package(s): $required${white}"
+fi
 
 echo -e "${green}Installing janus vim${white}"
 
