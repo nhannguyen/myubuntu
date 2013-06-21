@@ -4,11 +4,11 @@ set -e
 
 white='\e[1;37m'
 
-echo "${white}cd $HOME/myubuntu"
+echo -e "${white}cd $HOME/myubuntu"
 cd $HOME/myubuntu
-echo "${white}git fetch"
+echo -e "${white}git fetch"
 git fetch
-echo "${white}git merge origin/master"
+echo -e "${white}git merge origin/master"
 git merge origin/master
-echo "${white}apply-terminal"
+echo -e "${white}apply-terminal"
 apply-terminal

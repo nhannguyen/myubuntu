@@ -23,15 +23,15 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 # Check required packages
 if [[ `dpkg -l | grep rake` != 0 ]]
 then
-  echo "${red}Missing package rake${white}"
+  echo -e "${red}Missing package rake${white}"
   return 2
 elif [[ `dpkg -l | grep curl` != 0 ]]
 then
-  echo "${red}Missing package curl${white}"
+  echo -e "${red}Missing package curl${white}"
   return 2
 elif [[ `dpkg -l | grep vim` != 0 ]]
 then
-  echo "${red}You have to install vim first${white}"
+  echo -e "${red}You have to install vim first${white}"
   return 2
 fi
 
@@ -39,9 +39,9 @@ echo -e "${green}Installing janus vim${white}"
 
 if [[ ! -f $home_dir/.vim/installed ]]
 then
-  echo "${white}$su curl -Lo- http://bit.ly/janus-bootstrap | $su bash"
+  echo -e "${white}$su curl -Lo- http://bit.ly/janus-bootstrap | $su bash"
   $su curl -Lo- http://bit.ly/janus-bootstrap | $su bash
-  echo "${white}$su touch $home_dir/.vim/installed"
+  echo -e "${white}$su touch $home_dir/.vim/installed"
   $su touch $home_dir/.vim/installed
 fi
 
@@ -52,13 +52,13 @@ for terminal_directory in "${terminal_directories[@]}"
 do
   if [ -h $home_dir/.$terminal_directory ]
   then
-    echo "${white}rm $home_dir/.$terminal_directory"
+    echo -e "${white}rm $home_dir/.$terminal_directory"
     rm $home_dir/.$terminal_directory
   elif [ -d $home_dir/.$terminal_directory ]
   then
-    echo "${white}mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old"
+    echo -e "${white}mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old"
     mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old
   fi
-  echo "${white}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
+  echo -e "${white}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done

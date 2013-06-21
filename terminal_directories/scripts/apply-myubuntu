@@ -40,9 +40,9 @@ fi
 packages="git htop tmux vim rake curl"
 
 echo -e "${green}Installing basic packages${white}"
-echo "apt-get update"
+echo -e "${white}apt-get update"
 apt-get update
-echo "apt-get install -y $packages"
+echo -e "${white}apt-get install -y $packages"
 apt-get install -y $packages
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
