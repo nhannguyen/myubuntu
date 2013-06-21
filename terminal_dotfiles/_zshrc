@@ -67,7 +67,7 @@ setopt NO_BEEP
 
 
 # More PATH
-SCRIPTS=/home/$USER/.scripts
+SCRIPTS=$HOME/.scripts
 # Prevent tmux from export the path again
 if [ "$_SKIP_PROFILE" ]
 then
