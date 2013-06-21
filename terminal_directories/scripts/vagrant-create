@@ -1,5 +1,8 @@
 #!/bin/bash
 
+white='\e[1;37m'
+yellow='\e[4;33m'
+
 # Default VM name is test
 if [ "$1" == "" ]
 then
@@ -24,13 +27,13 @@ else
   OS=$2
 fi
 
-echo -e "${white}mkdir -p $H/chef/site-cookbooks"
+echo -e "${yellow}mkdir -p $H/chef/site-cookbooks${white}"
 mkdir -p $H/chef/site-cookbooks
-echo -e "${white}cd $H"
+echo -e "${yellow}cd $H${white}"
 cd $H
-echo -e "${white}vagrant init $OS"
+echo -e "${yellow}vagrant init $OS${white}"
 vagrant init $OS
-echo -e "${white}ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks"
+echo -e "${yellow}ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks${white}"
 ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks
-echo -e "${white}ln -s ~/cogini/chef-repo chef/chef-repo"
+echo -e "${yellow}ln -s ~/cogini/chef-repo chef/chef-repo${white}"
 ln -s ~/cogini/chef-repo chef/chef-repo

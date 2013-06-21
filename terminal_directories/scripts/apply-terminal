@@ -4,6 +4,7 @@ set -e
 
 green='\e[0;32m'
 white='\e[1;37m'
+yello='\e[4;33m'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 target=$(readlink -f "$DIR")
@@ -22,7 +23,7 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 terminal_dotfiles=("zsh_highlight" "zshrc" "bashrc" "aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
-echo -e "${white}cd $home_dir"
+echo -e "${yellow} cd $home_dir"
 cd $home_dir
 
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
@@ -30,17 +31,17 @@ echo -e "${green}Cloning powerline source${white}"
 
 if [[ ! -f $home_dir/.fonts/PowerlineSymbols.otf ]]
 then
-  echo -e "${white}$su mkdir -p $home_dir/.fonts/"
+  echo -e "${yellow}$su mkdir -p $home_dir/.fonts/"
   $su mkdir -p $home_dir/.fonts/
-  echo -e "${white}cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/"
+  echo -e "${yellow} cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/"
   cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/
 fi
 
 if [[ ! -f $home_dir/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]
 then
-  echo -e "${white}$su mkdir -p $home_dir/.config/fontconfig/conf.d/"
+  echo -e "${yellow}$su mkdir -p $home_dir/.config/fontconfig/conf.d/"
   $su mkdir -p $home_dir/.config/fontconfig/conf.d/
-  echo -e "${white}cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/"
+  echo -e "${yellow} cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/"
   cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/
 fi
 
@@ -48,13 +49,13 @@ echo -e "${green}Creating powerline configuration files${white}"
 
 if [[ -h $home_dir/.config/powerline ]]
 then
-  echo -e "${white}$su rm $home_dir/.config/powerline"
+  echo -e "${yellow}$su rm $home_dir/.config/powerline"
   $su rm $home_dir/.config/powerline
 fi
 
 if [[ ! -d $home_dir/.config/powerline ]]
 then
-  echo -e "${white}$su cp -R $target/../../powerline_config $home_dir/.config/powerline"
+  echo -e "${yellow}$su cp -R $target/../../powerline_config $home_dir/.config/powerline"
   $su cp -R $target/../../powerline_config $home_dir/.config/powerline
 fi
 
@@ -65,14 +66,14 @@ for dotfile in "${terminal_dotfiles[@]}"
 do
   if [[ -h .$dotfile ]]
   then
-    echo -e "${white}rm .$dotfile"
+    echo -e "${yellow} rm .$dotfile"
     rm .$dotfile
   elif [[ -f .$dotfile ]]
   then
-    echo -e "${white}mv .$dotfile .$dotfile.old"
+    echo -e "${yellow} mv .$dotfile .$dotfile.old"
     mv .$dotfile .$dotfile.old
   fi
-  echo -e "${white}$su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile"
+  echo -e "${yellow}$su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile"
   $su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
 done
 
@@ -80,13 +81,13 @@ for terminal_directory in "${terminal_directories[@]}"
 do
   if [ -h .$terminal_directory ]
   then
-    echo -e "${white}rm .$terminal_directory"
+    echo -e "${yellow} rm .$terminal_directory"
     rm .$terminal_directory
   elif [ -d .$terminal_directory ]
   then
-    echo -e "${white}mv .$terminal_directory .$terminal_directory.old"
+    echo -e "${yellow} mv .$terminal_directory .$terminal_directory.old"
     mv .$terminal_directory .$terminal_directory.old
   fi
-  echo -e "${white}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
+  echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done

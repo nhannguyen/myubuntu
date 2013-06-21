@@ -3,12 +3,13 @@
 set -e
 
 white='\e[1;37m'
+yellow='\e[4;33m'
 
-echo -e "${white}cd $HOME/myubuntu"
+echo -e "${yellow} cd $HOME/myubuntu${white}"
 cd $HOME/myubuntu
-echo -e "${white}git fetch"
+echo -e "${yellow} git fetch${white}"
 git fetch
-echo -e "${white}git merge origin/master"
+echo -e "${yellow} git merge origin/master${white}"
 git merge origin/master
-echo -e "${white}apply-terminal"
+echo -e "${yellow} apply-terminal${white}"
 apply-terminal
