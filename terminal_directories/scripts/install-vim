@@ -24,15 +24,15 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 if [[ `dpkg -l | grep rake` != 0 ]]
 then
   echo -e "${red}Missing package rake${white}"
-  return 2
+  exit 2
 elif [[ `dpkg -l | grep curl` != 0 ]]
 then
   echo -e "${red}Missing package curl${white}"
-  return 2
+  exit 2
 elif [[ `dpkg -l | grep vim` != 0 ]]
 then
   echo -e "${red}You have to install vim first${white}"
-  return 2
+  exit 2
 fi
 
 echo -e "${green}Installing janus vim${white}"
