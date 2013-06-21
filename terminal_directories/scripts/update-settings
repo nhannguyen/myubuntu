@@ -2,8 +2,13 @@
 
 set -e
 
-cd ~/myubuntu
-git fetch
-git merge origin/master
+white='\e[1;37m'
 
+echo "${white}cd $HOME/myubuntu"
+cd $HOME/myubuntu
+echo "${white}git fetch"
+git fetch
+echo "${white}git merge origin/master"
+git merge origin/master
+echo "${white}apply-terminal"
 apply-terminal

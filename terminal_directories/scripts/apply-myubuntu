@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 set -e
 
@@ -37,10 +37,12 @@ else
 fi
 
 # Install some basic packages
-packages="git git-core htop tmux"
+packages="git htop tmux vim rake curl"
 
 echo -e "${green}Installing basic packages${white}"
+echo "apt-get update"
 apt-get update
+echo "apt-get install -y $packages"
 apt-get install -y $packages
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

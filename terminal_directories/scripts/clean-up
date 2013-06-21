@@ -2,15 +2,20 @@
 
 set -e
 
+green='\e[0;32m'
+white='\e[1;37m'
+
+echo "${white}apt-get -y autoclean"
 apt-get -y autoclean
+echo "${white}apt-get -y autoremove"
 apt-get -y autoremove
 
 # Clean old package configuration files
 packages=`dpkg -l | awk '/^rc/{ print $2}'`
 if [[ $packages == "" ]]
 then
-  echo "No old configurations found"
+  echo "${green}No old configurations found${white}"
 else
   dpkg -l | awk '/^rc/{ print $2}' | xargs dpkg --purge
-  echo "Finished cleaning"
+  echo "${white}Finished cleaning"
 fi

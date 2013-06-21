@@ -1,16 +1,18 @@
 #!/bin/bash
 
 set -e
-set -x verbose
 
 green='\e[0;32m'
 white='\e[1;37m'
+red='\e[0;31m'
 
 if [ -z "$SUDO_USER" ]
 then
   U=$USER
+  su=""
 else
   U=$SUDO_USER
+  su="sudo -u $U -H"
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -18,16 +20,29 @@ target=$(readlink -f "$DIR")
 
 home_dir=$(getent passwd "$U" | cut -d: -f 6)
 
-echo -e "${green}Installing necessary packages for vim${white}"
-packages="vim rake curl"
-apt-get install -y $packages
+# Check required packages
+if [[ `dpkg -l | grep rake` != 0 ]]
+then
+  echo "${red}Missing package rake${white}"
+  return 2
+elif [[ `dpkg -l | grep curl` != 0 ]]
+then
+  echo "${red}Missing package curl${white}"
+  return 2
+elif [[ `dpkg -l | grep vim` != 0 ]]
+then
+  echo "${red}You have to install vim first${white}"
+  return 2
+fi
 
 echo -e "${green}Installing janus vim${white}"
-if [ ! -f $home_dir/.vim/installed ]
+
+if [[ ! -f $home_dir/.vim/installed ]]
 then
-  apt-get install -y curl rake
-  sudo -u $U curl -Lo- http://bit.ly/janus-bootstrap | sudo -u $U bash
-  sudo -u $U touch $home_dir/.vim/installed
+  echo "${white}$su curl -Lo- http://bit.ly/janus-bootstrap | $su bash"
+  $su curl -Lo- http://bit.ly/janus-bootstrap | $su bash
+  echo "${white}$su touch $home_dir/.vim/installed"
+  $su touch $home_dir/.vim/installed
 fi
 
 echo -e "${green}Linking vim configuration files${white}"
@@ -37,10 +52,13 @@ for terminal_directory in "${terminal_directories[@]}"
 do
   if [ -h $home_dir/.$terminal_directory ]
   then
+    echo "${white}rm $home_dir/.$terminal_directory"
     rm $home_dir/.$terminal_directory
   elif [ -d $home_dir/.$terminal_directory ]
   then
+    echo "${white}mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old"
     mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old
   fi
-  sudo -u $U ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
+  echo "${white}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
+  $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done

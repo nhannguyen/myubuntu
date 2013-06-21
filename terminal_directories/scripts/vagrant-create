@@ -23,8 +23,14 @@ then
 else
   OS=$2
 fi
+
+echo "${white}mkdir -p $H/chef/site-cookbooks"
 mkdir -p $H/chef/site-cookbooks
+echo "${white}cd $H"
 cd $H
+echo "${white}vagrant init $OS"
 vagrant init $OS
+echo "${white}ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks"
 ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks
+echo "${white}ln -s ~/cogini/chef-repo chef/chef-repo"
 ln -s ~/cogini/chef-repo chef/chef-repo
