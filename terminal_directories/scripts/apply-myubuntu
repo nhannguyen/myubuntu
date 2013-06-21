@@ -48,12 +48,12 @@ target=$(readlink -f "$DIR")
 
 if [[ $vim -eq 1 ]]
 then
-  $target/install-vim.sh
+  $target/install-vim
 fi
 
 if [[ $vagrant -eq 1 ]]
 then
-  $target/install-vagrant.sh
+  $target/install-vagrant
 fi
 
-$target/apply-terminal.sh
+$target/apply-terminal

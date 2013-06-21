@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+cd ~/myubuntu
+git fetch
+git merge origin/master
+
+apply-terminal
