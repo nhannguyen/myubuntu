@@ -4,7 +4,7 @@ set -e
 
 green='\e[0;32m'
 white='\e[0;37m'
-yello='\e[0;33m'
+yellow='\e[0;33m'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 target=$(readlink -f "$DIR")
@@ -23,7 +23,7 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 terminal_dotfiles=("zsh_highlight" "zshrc" "bashrc" "aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
-echo -e "${yellow} cd $home_dir"
+echo -e "${yellow} cd $home_dir${white}"
 cd $home_dir
 
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
