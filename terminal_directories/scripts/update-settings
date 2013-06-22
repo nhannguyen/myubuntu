@@ -2,8 +2,8 @@
 
 set -e
 
-white='\e[1;37m'
-yellow='\e[4;33m'
+white='\e[0;37m'
+yellow='\e[0;33m'
 
 echo -e "${yellow} cd $HOME/myubuntu${white}"
 cd $HOME/myubuntu

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-white='\e[1;37m'
-yellow='\e[4;33m'
+white='\e[0;37m'
+yellow='\e[0;33m'
 
 # Default VM name is test
 if [ "$1" == "" ]

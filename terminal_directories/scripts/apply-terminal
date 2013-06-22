@@ -3,8 +3,8 @@
 set -e
 
 green='\e[0;32m'
-white='\e[1;37m'
-yello='\e[4;33m'
+white='\e[0;37m'
+yello='\e[0;33m'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 target=$(readlink -f "$DIR")

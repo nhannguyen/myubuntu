@@ -3,7 +3,7 @@
 set -e
 
 green='\e[0;32m'
-white='\e[1;37m'
+white='\e[0;37m'
 
 echo -e "${green}Adding virtualbox to repo list${white}"
 if [ ! -f /etc/apt/source.list.d/virtualbox.list ]
