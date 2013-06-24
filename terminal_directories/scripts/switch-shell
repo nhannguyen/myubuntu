@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+green='\e[0;32m'
+white='\e[0;37m'
+red='\e[0;31m'
+yellow='\e[0;33m'
+
+sh=$1
+
+if [[ "/bin/$sh" == $SHELL ]]
+then
+  echo "${green}You are already using $sh.${white}"
+  exit 1
+fi
+
+dpkg -l | grep $sh > /dev/null
+if [[ ! $? -eq 0 ]]
+then
+  echo -e "${red}You need to install $sh first.${white}"
+  exit 2
+fi
+
+echo -e "${green}Checkout $sh files${white}"
+echo -e "${yellow} cd ~/myubuntu${white}"
+cd ~/myubuntu
+echo -e "${yellow} git checkout $sh${white}"
+git checkout $sh
+echo -e "${yellow}update-settings${white}"
+update-settings
+echo -e "${yellow}chsh -s /bin/$sh${white}"
+chsh -s /bin/$sh
