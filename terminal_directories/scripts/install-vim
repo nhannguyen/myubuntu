@@ -49,9 +49,9 @@ echo -e "${green}Installing janus vim${white}"
 
 if [[ ! -f $home_dir/.vim/installed ]]
 then
-  echo -e "${yellow}$su curl -Lo- http://bit.ly/janus-bootstrap | $su bash"
+  echo -e "${yellow}$su curl -Lo- http://bit.ly/janus-bootstrap | $su bash${white}"
   $su curl -Lo- http://bit.ly/janus-bootstrap | $su bash
-  echo -e "${yellow}$su touch $home_dir/.vim/installed"
+  echo -e "${yellow}$su touch $home_dir/.vim/installed${white}"
   $su touch $home_dir/.vim/installed
 fi
 
@@ -62,13 +62,13 @@ for terminal_directory in "${terminal_directories[@]}"
 do
   if [ -h $home_dir/.$terminal_directory ]
   then
-    echo -e "${yellow} rm $home_dir/.$terminal_directory"
+    echo -e "${yellow} rm $home_dir/.$terminal_directory${white}"
     rm $home_dir/.$terminal_directory
   elif [ -d $home_dir/.$terminal_directory ]
   then
-    echo -e "${yellow} mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old"
+    echo -e "${yellow} mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old${white}"
     mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old
   fi
-  echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
+  echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory${white}"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done

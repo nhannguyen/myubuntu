@@ -31,17 +31,17 @@ echo -e "${green}Cloning powerline source${white}"
 
 if [[ ! -f $home_dir/.fonts/PowerlineSymbols.otf ]]
 then
-  echo -e "${yellow}$su mkdir -p $home_dir/.fonts/"
+  echo -e "${yellow}$su mkdir -p $home_dir/.fonts/${white}"
   $su mkdir -p $home_dir/.fonts/
-  echo -e "${yellow} cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/"
+  echo -e "${yellow} cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/${white}"
   cp $target/../../powerline/font/PowerlineSymbols.otf $home_dir/.fonts/
 fi
 
 if [[ ! -f $home_dir/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]
 then
-  echo -e "${yellow}$su mkdir -p $home_dir/.config/fontconfig/conf.d/"
+  echo -e "${yellow}$su mkdir -p $home_dir/.config/fontconfig/conf.d/${white}"
   $su mkdir -p $home_dir/.config/fontconfig/conf.d/
-  echo -e "${yellow} cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/"
+  echo -e "${yellow} cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/${white}"
   cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/
 fi
 
@@ -49,13 +49,13 @@ echo -e "${green}Creating powerline configuration files${white}"
 
 if [[ -h $home_dir/.config/powerline ]]
 then
-  echo -e "${yellow}$su rm $home_dir/.config/powerline"
+  echo -e "${yellow}$su rm $home_dir/.config/powerline${white}"
   $su rm $home_dir/.config/powerline
 fi
 
 if [[ ! -d $home_dir/.config/powerline ]]
 then
-  echo -e "${yellow}$su cp -R $target/../../powerline_config $home_dir/.config/powerline"
+  echo -e "${yellow}$su cp -R $target/../../powerline_config $home_dir/.config/powerline${white}"
   $su cp -R $target/../../powerline_config $home_dir/.config/powerline
 fi
 
@@ -66,14 +66,14 @@ for dotfile in "${terminal_dotfiles[@]}"
 do
   if [[ -h .$dotfile ]]
   then
-    echo -e "${yellow} rm .$dotfile"
+    echo -e "${yellow} rm .$dotfile${white}"
     rm .$dotfile
   elif [[ -f .$dotfile ]]
   then
-    echo -e "${yellow} mv .$dotfile .$dotfile.old"
+    echo -e "${yellow} mv .$dotfile .$dotfile.old${white}"
     mv .$dotfile .$dotfile.old
   fi
-  echo -e "${yellow}$su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile"
+  echo -e "${yellow}$su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile${white}"
   $su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
 done
 
@@ -81,13 +81,13 @@ for terminal_directory in "${terminal_directories[@]}"
 do
   if [ -h .$terminal_directory ]
   then
-    echo -e "${yellow} rm .$terminal_directory"
+    echo -e "${yellow} rm .$terminal_directory${white}"
     rm .$terminal_directory
   elif [ -d .$terminal_directory ]
   then
-    echo -e "${yellow} mv .$terminal_directory .$terminal_directory.old"
+    echo -e "${yellow} mv .$terminal_directory .$terminal_directory.old${white}"
     mv .$terminal_directory .$terminal_directory.old
   fi
-  echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory"
+  echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory${white}"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done
