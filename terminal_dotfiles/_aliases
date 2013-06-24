@@ -1,5 +1,5 @@
 # enable color support of ls and also add handy aliases
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -CF'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
@@ -10,39 +10,12 @@ alias egrep='egrep --color=auto'
 # some more ls aliases
 alias ll='ls -ahlF'
 alias la='ls -AF'
-alias l='ls -CF'
+alias lr='ls -R'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Custom cd
-function mycd {
-  if [[ $# -eq 0 ]]
-  then
-    dir=$(getent passwd "$USER" | cut -d: -f 6)
-  else
-    dir=$1
-  fi
-  if [[ -d $dir ]]
-  then
-    cd $dir
-    count=`la | wc -l`
-    if [[ ! $count -gt 80 ]]
-    then
-      la
-    else
-      echo "$count files and directories"
-    fi
-  else
-    echo "No such directory"
-  fi
-}
-
-
-# General aliases
-alias cd=mycd
-alias lr='ls -R'
 
 # Aliases for git
 alias a='git add'
