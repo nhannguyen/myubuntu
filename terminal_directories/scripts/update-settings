@@ -5,11 +5,15 @@ set -e
 white='\e[0;37m'
 yellow='\e[0;33m'
 
+branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
+branch="(unnamed branch)"     # detached HEAD
+branch=${branch##refs/heads/}
+
 echo -e "${yellow} cd $HOME/myubuntu${white}"
 cd $HOME/myubuntu
 echo -e "${yellow} git fetch${white}"
 git fetch
-echo -e "${yellow} git merge origin/master${white}"
+echo -e "${yellow} git merge origin/$branch${white}"
 git merge origin/master
 echo -e "${yellow} apply-terminal${white}"
 apply-terminal

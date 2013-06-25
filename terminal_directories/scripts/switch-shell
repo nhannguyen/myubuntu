@@ -11,7 +11,7 @@ sh=$1
 
 if [[ "/bin/$sh" == $SHELL ]]
 then
-  echo "${green}You are already using $sh.${white}"
+  echo -e "${green}You are already using $sh.${white}"
   exit 1
 fi
 
