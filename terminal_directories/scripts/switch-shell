@@ -27,7 +27,9 @@ echo -e "${yellow} cd ~/myubuntu${white}"
 cd ~/myubuntu
 echo -e "${yellow} git checkout $sh${white}"
 git checkout $sh
-echo -e "${yellow}update-settings${white}"
-update-settings
+echo -e "${yellow} git fetch${white}"
+git fetch
+echo -e "${yellow} git merge origin/$sh${white}"
+git merge origin/$sh
 echo -e "${yellow}chsh -s /bin/$sh${white}"
 chsh -s /bin/$sh
