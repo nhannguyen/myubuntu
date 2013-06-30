@@ -29,5 +29,7 @@ echo -e "${yellow} git checkout $sh${white}"
 git checkout $sh
 echo -e "${yellow} git merge origin/$sh${white}"
 git merge origin/$sh
+echo -e "${yellow} git remote update${white}"
+git remote update
 echo -e "${yellow} apply-terminal${white}"
 apply-terminal
