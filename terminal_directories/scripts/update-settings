@@ -5,14 +5,6 @@ set -e
 white='\e[0;37m'
 yellow='\e[0;33m'
 
-#if [[ -n $ZSH_VERSION ]]
-#then
-  #sh="zsh"
-#elif [[ -n $BASH_VERSION ]]
-#then
-  #sh="bash"
-#fi
-
 if [[ $SHELL == "/bin/bash" ]]
 then
   sh="bash"
@@ -23,8 +15,8 @@ fi
 
 echo -e "${yellow} cd $HOME/myubuntu${white}"
 cd $HOME/myubuntu
-echo -e "${yellow} git fetch${white}"
-git fetch
+echo -e "${yellow} git fetch --recurse-submodules${white}"
+git fetch --recurse-submodules
 echo -e "${yellow} git checkout $sh${white}"
 git checkout $sh
 echo -e "${yellow} git merge origin/$sh${white}"
