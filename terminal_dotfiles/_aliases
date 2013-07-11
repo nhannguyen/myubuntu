@@ -43,7 +43,7 @@ alias detach='tmux detach'
 alias chef-solo='sudo chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json'
 
 # Update ubuntu
-alias update='sudo apt-get update && sudo apt-get -y dist-upgrade'
+alias update='sudo apt-get update && sudo apt-get -y upgrade'
 
 # Shutdown and reboot
 alias reboot='sudo reboot'
