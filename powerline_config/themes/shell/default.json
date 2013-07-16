@@ -37,6 +37,10 @@
 			}
 		],
 		"right": [
+      {
+        "module": "powerline.segments.shell",
+        "name": "jobs"
+      },
 			{
 				"module": "powerline.segments.shell",
 				"name": "last_pipe_status"
