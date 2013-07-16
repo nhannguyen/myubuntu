@@ -51,13 +51,13 @@ if [[ -h $home_dir/.config/powerline ]]
 then
   echo -e "${yellow}$su rm $home_dir/.config/powerline${white}"
   $su rm $home_dir/.config/powerline
-fi
-
-if [[ ! -d $home_dir/.config/powerline ]]
+elif [[ -d $home_dir/.config/powerline ]]
 then
-  echo -e "${yellow}$su cp -R $target/../../powerline_config $home_dir/.config/powerline${white}"
-  $su cp -R $target/../../powerline_config $home_dir/.config/powerline
+  echo -e "${yellow}$su mv $home_dir/.config/powerline $home_dir/.config/powerline.old${white}"
+  $su mv $home_dir/.config/powerline $home_dir/.config/powerline.old
 fi
+echo -e "${yellow}$su ln -s $target/../../powerline_config $home_dir/.config/powerline${white}"
+$su ln -s $target/../../powerline_config $home_dir/.config/powerline
 
 
 echo -e "${green}Linking dotfiles${white}"
