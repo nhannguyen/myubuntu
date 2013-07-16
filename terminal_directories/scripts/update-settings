@@ -15,11 +15,27 @@ fi
 
 echo -e "${yellow} cd $HOME/myubuntu${white}"
 cd $HOME/myubuntu
-echo -e "${yellow} git fetch --recurse-submodules${white}"
-git fetch --recurse-submodules
+echo -e "${yellow} git fetch${white}"
+git fetch
 echo -e "${yellow} git checkout $sh${white}"
 git checkout $sh
 echo -e "${yellow} git merge origin/$sh${white}"
 git merge origin/$sh
+echo -e "${yellow} cd powerline${white}"
+cd powerline
+echo -e "${yellow} git fetch${white}"
+git fetch
+echo -e "${yellow} git checkout master${white}"
+git checkout master
+echo -e "${yellow} git merge origin/master${white}"
+git merge origin/master
+echo -e "${yellow} cd ../zsh-syntax-highlighting${white}"
+cd ../zsh-syntax-highlighting
+echo -e "${yellow} git fetch${white}"
+git fetch
+echo -e "${yellow} git checkout master${white}"
+git checkout master
+echo -e "${yellow} git merge origin/master${white}"
+git merge origin/master
 echo -e "${yellow} apply-terminal${white}"
 apply-terminal
