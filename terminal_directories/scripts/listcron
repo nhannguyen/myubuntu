@@ -1,3 +1,11 @@
 #!/bin/bash
 
-for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done
+for user in $(cut -f1 -d: /etc/passwd)
+do
+  crontab -u $user -l &> /dev/null
+  if [[ $? -eq 0 ]]
+  then
+    echo "Cron jobs of $user:"
+    crontab -u $user -l
+  fi
+done
