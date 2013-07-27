@@ -11,10 +11,7 @@
 			"before": "ⓔ  "
 		},
 		"branch": {
-			"before": " ",
-      "args": {
-        "status_colors": true
-      }
+			"before": " "
 		}
 	},
 	"segments": {
