@@ -36,6 +36,9 @@ setopt EXTENDED_GLOB
 autoload -Uz compinit
 compinit
 
+# zsh autocompletion
+fpath=($HOME/myubuntu/zsh-completions/src $fpath)
+
 # SSH hosts completion {{{
 [[ -f ~/.ssh/config ]] && : ${(A)SSHh_config_hosts:=${${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*\**}:#*\?*}}
 zstyle ':completion:*:*:*' hosts $ssh_config_hosts
