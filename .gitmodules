@@ -7,3 +7,6 @@
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/nhannguyen/zsh-completions.git
+[submodule "powerline-daemon"]
+	path = powerline-daemon
+	url = https://github.com/kovidgoyal/powerline-daemon.git
