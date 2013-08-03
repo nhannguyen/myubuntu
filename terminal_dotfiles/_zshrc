@@ -74,6 +74,7 @@ setopt NO_BEEP
 
 # More PATH
 SCRIPTS=$HOME/.scripts
+POWERLINE_SCRIPT_DIR=$HOME/myubuntu/powerline/scripts
 # Prevent tmux from export the path again
 if [ "$_SKIP_PROFILE" ]
 then
@@ -82,7 +83,7 @@ else
   export _SKIP_PROFILE=y
 fi
 # No need to add java if it is not installed
-export PATH=$PATH:$SCRIPTS
+export PATH=$PATH:$SCRIPTS:$POWERLINE_SCRIPT_DIR
 
 # Syntax highlighting
 source .zsh_highlight
