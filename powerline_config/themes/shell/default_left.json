@@ -41,11 +41,7 @@
 			{
 				"name": "last_status",
 				"module": "powerline.segments.shell"
-			},
-      {
-        "name": "jobs",
-        "module": "powerline.segments.shell"
-      }
+			}
 		]
 	}
 }
