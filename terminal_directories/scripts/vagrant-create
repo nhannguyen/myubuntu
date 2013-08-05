@@ -33,7 +33,7 @@ echo -e "${yellow}cd $H${white}"
 cd $H
 echo -e "${yellow}vagrant init $OS${white}"
 vagrant init $OS
-echo -e "${yellow}ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks${white}"
-ln -s ~/cogini/chef-cookbooks chef/chef-cookbooks
-echo -e "${yellow}ln -s ~/cogini/chef-repo chef/chef-repo${white}"
-ln -s ~/cogini/chef-repo chef/chef-repo
+echo -e "${yellow}Adding chef folders ...${white}"
+git submodule add https://github.com/phunehehe/chef-cookbooks.git chef/chef-cookbooks
+git submodule add ssh://git@gitlab.cogini.com:1026/phunehehe/chef-repo.git chef/chef-repo
+mkdir -p chef/site-cookbooks/main
