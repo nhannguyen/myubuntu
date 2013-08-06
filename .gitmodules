@@ -1,3 +1,6 @@
 [submodule "powerline"]
 	path = powerline
 	url = https://github.com/nhannguyen/powerline.git
+[submodule "powerline-daemon"]
+	path = powerline-daemon
+	url = https://github.com/kovidgoyal/powerline-daemon.git
