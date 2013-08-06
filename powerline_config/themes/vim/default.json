@@ -1,8 +1,7 @@
 {
 	"segment_data": {
 		"branch": {
-			"before": " ",
-      "status_colors": true
+			"before": " "
 		},
 		"modified_indicator": {
 			"args": { "text": "+" }
@@ -20,6 +19,11 @@
 			{
 				"name": "mode",
 				"exclude_modes": ["nc"]
+			},
+			{
+				"name": "visual_range",
+				"exclude_modes": ["nc"],
+				"priority": 10
 			},
 			{
 				"name": "paste_indicator",
