@@ -73,9 +73,9 @@ then
   $su rm $target/powerline-daemon
 fi
 
-if [[ -h $target/powerline ]]
+if [[ -h $target/../../powerline-daemon/powerline ]]
 then
-  $su rm $target/powerline
+  $su rm $target/../../powerline-daemon/powerline
 fi
 
 if [[ -h $target/powerline-client ]]
