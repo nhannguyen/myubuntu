@@ -9,6 +9,8 @@ yellow='\e[0;33m'
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 target=$(readlink -f "$DIR")
 
+####################################################################################
+# Get user
 if [ -z "$SUDO_USER" ]
 then
   U=$USER
@@ -18,17 +20,26 @@ else
   su="sudo -u $U -H"
 fi
 
+#####################################################################################
+# Get home dir
 home_dir=$(getent passwd "$U" | cut -d: -f 6)
 
+#####################################################################################
 terminal_dotfiles=("zsh_highlight" "zshrc" "aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
 echo -e "${yellow} cd $home_dir${white}"
 cd $home_dir
 
+####################################################################################
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
 echo -e "${green}Cloning powerline source${white}"
 
+cd $home_dir/myubuntu
+git submodule init
+git submodule update
+
+###################################################################################
 if [[ ! -f $home_dir/.fonts/PowerlineSymbols.otf ]]
 then
   echo -e "${yellow}$su mkdir -p $home_dir/.fonts/${white}"
@@ -45,6 +56,46 @@ then
   cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/
 fi
 
+##################################################################################
+# Compile powerline daemon
+if [[ ! -f $target/../../powerline-daemon/powerline-client ]]
+then
+  echo -e "${green}Compile powerline daemon${white}"
+
+  echo -e "${yellow} cd $home_dir/myubuntu/powerline-daemon${white}"
+  cd $home_dir/myubuntu/powerline-daemon
+
+  echo -e "${yellow} gcc -O3 powerline-client.c -o powerline-client${white}"
+  $su gcc -O3 powerline-client.c -o powerline-client
+fi
+
+#################################################################################
+# Add powerline-daemon and powerline-client to path
+if [[ -h $target/powerline-daemon ]]
+then
+  $su rm $target/powerline-daemon
+fi
+
+if [[ -h $target/powerline ]]
+then
+  $su rm $target/powerline
+fi
+
+if [[ -h $target/powerline-client ]]
+then
+  $su rm $target/powerline-client
+fi
+
+echo -e "${yellow} ln -s $target/powerline $target/../../powerline${white}"
+ln -s $target/powerline $target/../../powerline
+
+echo -e "${yellow} ln -s $target/powerline-daemon $target/../../powerline-daemon/powerline-daemon${white}"
+ln -s $target/powerline-daemon $target/../../powerline-daemon/powerline-daemon
+
+echo -e "${yellow} ln -s $target/powerline-client $target/../../powerline-daemon/powerline-client${white}"
+ln -s $target/powerline-client $target/../../powerline-daemon/powerline-client
+
+################################################################################
 echo -e "${green}Creating powerline configuration files${white}"
 
 if [[ -h $home_dir/.config/powerline ]]

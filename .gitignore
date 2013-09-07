@@ -1,2 +1,3 @@
-Vagrantfile
-.vagrant
+/.vagrant
+/Vagrantfile
+/terminal_directories/scripts/powerline*
