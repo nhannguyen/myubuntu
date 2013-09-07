@@ -85,14 +85,14 @@ then
   $su rm $target/powerline-client
 fi
 
-echo -e "${yellow} ln -s $target/powerline $target/../../powerline${white}"
-ln -s $target/powerline $target/../../powerline
+echo -e "${yellow} ln -s $target/../../powerline $target/powerline${white}"
+ln -s $target/../../powerline $target/powerline
 
-echo -e "${yellow} ln -s $target/powerline-daemon $target/../../powerline-daemon/powerline-daemon${white}"
-ln -s $target/powerline-daemon $target/../../powerline-daemon/powerline-daemon
+echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon${white}"
+ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon
 
-echo -e "${yellow} ln -s $target/powerline-client $target/../../powerline-daemon/powerline-client${white}"
-ln -s $target/powerline-client $target/../../powerline-daemon/powerline-client
+echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-client $target/powerline-client${white}"
+ln -s $target/../../powerline-daemon/powerline-client $target/powerline-client
 
 ################################################################################
 echo -e "${green}Creating powerline configuration files${white}"
