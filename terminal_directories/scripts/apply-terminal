@@ -82,8 +82,8 @@ then
   $su rm $target/powerline-client
 fi
 
-echo -e "${yellow} ln -s $target/../../powerline $target/powerline${white}"
-ln -s $target/../../powerline/powerline $target/powerline/powerline
+echo -e "${yellow} ln -s $target/../../powerline/powerline $target/powerline/powerline${white}"
+ln -s $target/../../powerline/powerline $target/powerline
 
 echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon${white}"
 ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon
