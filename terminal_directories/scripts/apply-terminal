@@ -28,16 +28,13 @@ home_dir=$(getent passwd "$U" | cut -d: -f 6)
 terminal_dotfiles=("zsh_highlight" "zshrc" "aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
-echo -e "${yellow} cd $home_dir${white}"
-cd $home_dir
-
 ####################################################################################
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
 echo -e "${green}Cloning powerline source${white}"
 
 cd $home_dir/myubuntu
-git submodule init
-git submodule update
+$su git submodule init
+$su git submodule update
 
 ###################################################################################
 if [[ ! -f $home_dir/.fonts/PowerlineSymbols.otf ]]
@@ -113,16 +110,16 @@ $su ln -s $target/../../powerline_config $home_dir/.config/powerline
 
 echo -e "${green}Linking dotfiles${white}"
 
-for dotfile in "${terminal_dotfiles[@]}"
+for dotfile in ${terminal_dotfiles[@]}
 do
-  if [[ -h .$dotfile ]]
+  if [[ -h $home_dir/.$dotfile ]]
   then
-    echo -e "${yellow} rm .$dotfile${white}"
-    rm .$dotfile
-  elif [[ -f .$dotfile ]]
+    echo -e "${yellow} rm $home_dir/.$dotfile${white}"
+    rm $home_dir/.$dotfile
+  elif [[ -f $home_dir/.$dotfile ]]
   then
-    echo -e "${yellow} mv .$dotfile .$dotfile.old${white}"
-    mv .$dotfile .$dotfile.old
+    echo -e "${yellow} mv $home_dir/.$dotfile $home_dir/.$dotfile.old${white}"
+    mv $home_dir/.$dotfile $home_dir/.$dotfile.old
   fi
   echo -e "${yellow}$su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile${white}"
   $su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
@@ -130,14 +127,14 @@ done
 
 for terminal_directory in "${terminal_directories[@]}"
 do
-  if [ -h .$terminal_directory ]
+  if [[ -h $home_dir/.$terminal_directory ]]
   then
-    echo -e "${yellow} rm .$terminal_directory${white}"
-    rm .$terminal_directory
-  elif [ -d .$terminal_directory ]
+    echo -e "${yellow} rm $home_dir/.$terminal_directory${white}"
+    rm $home_dir/.$terminal_directory
+  elif [[ -d .$terminal_directory ]]
   then
-    echo -e "${yellow} mv .$terminal_directory .$terminal_directory.old${white}"
-    mv .$terminal_directory .$terminal_directory.old
+    echo -e "${yellow} mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old${white}"
+    mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old
   fi
   echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory${white}"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
