@@ -1,3 +1,5 @@
 /.vagrant
 /Vagrantfile
 /terminal_directories/scripts/powerline*
+/zsh-completions
+/zsh-syntax-highlighting
