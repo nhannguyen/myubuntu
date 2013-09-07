@@ -1,12 +1,16 @@
 [submodule "powerline"]
 	path = powerline
 	url = https://github.com/nhannguyen/powerline.git
+  ignore = dirty
 [submodule "zsh-syntax-highlighting"]
 	path = zsh-syntax-highlighting
 	url = https://github.com/nhannguyen/zsh-syntax-highlighting.git
+  ignore = dirty
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/nhannguyen/zsh-completions.git
+  ignore = dirty
 [submodule "powerline-daemon"]
 	path = powerline-daemon
 	url = https://github.com/kovidgoyal/powerline-daemon.git
+  ignore = dirty
