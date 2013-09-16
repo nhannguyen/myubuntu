@@ -71,6 +71,8 @@ function chpwd() {
 # beeps are annoying
 setopt NO_BEEP
 
+# Syntax highlighting
+source $HOME/.zsh_highlight
 
 # More PATH
 SCRIPTS=$HOME/.scripts
@@ -84,6 +86,3 @@ else
 fi
 # No need to add java if it is not installed
 export PATH=$PATH:$SCRIPTS:$POWERLINE_SCRIPT_DIR
-
-# Syntax highlighting
-source .zsh_highlight
