@@ -1,6 +1,8 @@
 [submodule "powerline"]
 	path = powerline
 	url = https://github.com/nhannguyen/powerline.git
+  ignore = dirty
 [submodule "powerline-daemon"]
 	path = powerline-daemon
 	url = https://github.com/kovidgoyal/powerline-daemon.git
+  ignore = dirty

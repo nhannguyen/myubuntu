@@ -9,6 +9,8 @@ yellow='\e[0;33m'
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 target=$(readlink -f "$DIR")
 
+####################################################################################
+# Get user
 if [ -z "$SUDO_USER" ]
 then
   U=$USER
@@ -18,17 +20,22 @@ else
   su="sudo -u $U -H"
 fi
 
+#####################################################################################
+# Get home dir
 home_dir=$(getent passwd "$U" | cut -d: -f 6)
 
 terminal_dotfiles=("bashrc" "aliases" "vimrc.after" "vimrc.before" "gitconfig" "tmux.conf")
 terminal_directories=("scripts")
 
-echo -e "${yellow} cd $home_dir${white}"
-cd $home_dir
-
+####################################################################################
 echo -e "${green}Installing Powerline plugin for command prompt, vim and tmux${white}"
 echo -e "${green}Cloning powerline source${white}"
 
+cd $home_dir/myubuntu
+$su git submodule init
+$su git submodule update
+
+###################################################################################
 if [[ ! -f $home_dir/.fonts/PowerlineSymbols.otf ]]
 then
   echo -e "${yellow}$su mkdir -p $home_dir/.fonts/${white}"
@@ -45,6 +52,46 @@ then
   cp $target/../../powerline/font/10-powerline-symbols.conf $home_dir/.config/fontconfig/conf.d/
 fi
 
+##################################################################################
+# Compile powerline daemon
+if [[ ! -f $target/../../powerline-daemon/powerline-client ]]
+then
+  echo -e "${green}Compile powerline daemon${white}"
+
+  echo -e "${yellow} cd $home_dir/myubuntu/powerline-daemon${white}"
+  cd $home_dir/myubuntu/powerline-daemon
+
+  echo -e "${yellow} gcc -O3 powerline-client.c -o powerline-client${white}"
+  $su gcc -O3 powerline-client.c -o powerline-client
+fi
+
+#################################################################################
+# Add powerline-daemon and powerline-client to path
+if [[ -h $target/powerline-daemon ]]
+then
+  $su rm $target/powerline-daemon
+fi
+
+if [[ -h $target/../../powerline-daemon/powerline ]]
+then
+  $su rm $target/../../powerline-daemon/powerline
+fi
+
+if [[ -h $target/powerline-client ]]
+then
+  $su rm $target/powerline-client
+fi
+
+echo -e "${yellow} ln -s $target/../../powerline/powerline $target/../../powerline-daemon/powerline${white}"
+ln -s $target/../../powerline/powerline $target/../../powerline-daemon/powerline
+
+echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon${white}"
+ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon
+
+echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-client $target/powerline-client${white}"
+ln -s $target/../../powerline-daemon/powerline-client $target/powerline-client
+
+################################################################################
 echo -e "${green}Creating powerline configuration files${white}"
 
 if [[ -h $home_dir/.config/powerline ]]
@@ -62,16 +109,16 @@ $su ln -s $target/../../powerline_config $home_dir/.config/powerline
 
 echo -e "${green}Linking dotfiles${white}"
 
-for dotfile in "${terminal_dotfiles[@]}"
+for dotfile in ${terminal_dotfiles[@]}
 do
-  if [[ -h .$dotfile ]]
+  if [[ -h $home_dir/.$dotfile ]]
   then
-    echo -e "${yellow} rm .$dotfile${white}"
-    rm .$dotfile
-  elif [[ -f .$dotfile ]]
+    echo -e "${yellow} rm $home_dir/.$dotfile${white}"
+    rm $home_dir/.$dotfile
+  elif [[ -f $home_dir/.$dotfile ]]
   then
-    echo -e "${yellow} mv .$dotfile .$dotfile.old${white}"
-    mv .$dotfile .$dotfile.old
+    echo -e "${yellow} mv $home_dir/.$dotfile $home_dir/.$dotfile.old${white}"
+    mv $home_dir/.$dotfile $home_dir/.$dotfile.old
   fi
   echo -e "${yellow}$su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile${white}"
   $su ln -s $target/../../terminal_dotfiles/_$dotfile $home_dir/.$dotfile
@@ -79,14 +126,14 @@ done
 
 for terminal_directory in "${terminal_directories[@]}"
 do
-  if [ -h .$terminal_directory ]
+  if [[ -h $home_dir/.$terminal_directory ]]
   then
-    echo -e "${yellow} rm .$terminal_directory${white}"
-    rm .$terminal_directory
-  elif [ -d .$terminal_directory ]
+    echo -e "${yellow} rm $home_dir/.$terminal_directory${white}"
+    rm $home_dir/.$terminal_directory
+  elif [[ -d .$terminal_directory ]]
   then
-    echo -e "${yellow} mv .$terminal_directory .$terminal_directory.old${white}"
-    mv .$terminal_directory .$terminal_directory.old
+    echo -e "${yellow} mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old${white}"
+    mv $home_dir/.$terminal_directory $home_dir/.$terminal_directory.old
   fi
   echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory${white}"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
