@@ -34,6 +34,7 @@ cd $H
 echo -e "${yellow}vagrant init $OS${white}"
 vagrant init $OS
 echo -e "${yellow}Adding chef folders ...${white}"
+git init
 git submodule add https://github.com/phunehehe/chef-cookbooks.git chef/chef-cookbooks
 git submodule add ssh://git@gitlab.cogini.com:1026/phunehehe/chef-repo.git chef/chef-repo
 mkdir -p chef/site-cookbooks/main
