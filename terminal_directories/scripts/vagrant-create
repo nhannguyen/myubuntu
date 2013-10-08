@@ -1,5 +1,6 @@
 #!/bin/bash
 
+green='\e[0;32m'
 white='\e[0;37m'
 yellow='\e[0;33m'
 
@@ -33,8 +34,24 @@ echo -e "${yellow}cd $H${white}"
 cd $H
 echo -e "${yellow}vagrant init $OS${white}"
 vagrant init $OS
-echo -e "${yellow}Adding chef folders ...${white}"
+echo -e "${green}Adding chef folders ...${white}"
 git init
 git submodule add https://github.com/phunehehe/chef-cookbooks.git chef/chef-cookbooks
 git submodule add ssh://git@gitlab.cogini.com:1026/phunehehe/chef-repo.git chef/chef-repo
-mkdir -p chef/site-cookbooks/main
+
+echo -e "${green}Creating site-cookbooks/main structure${white}"
+
+the_dirs=("main" "main/recipes" "main/attributes" "main/templates/default")
+files=("main/recipes/default.rb" "main/attributes/default.rb" "main/metadata.rb" "main/README.md")
+
+echo `pwd`
+
+for the_dir in "${the_dirs[@]}"
+do
+  mkdir -p chef/site-cookbooks/$the_dir
+done
+
+for file in "${files[@]}"
+do
+  touch chef/site-cookbooks/$file
+done
