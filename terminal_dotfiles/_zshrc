@@ -76,13 +76,7 @@ source $HOME/.zsh_highlight
 
 # More PATH
 SCRIPTS=$HOME/.scripts
-
-echo `which powerline-daemon` > /dev/null
-if [ $? != 0 ]
-then
-  POWERLINE_SCRIPT_DIR=$HOME/myubuntu/powerline/scripts
-fi
-
+POWERLINE_SCRIPT_DIR=$HOME/myubuntu/powerline/scripts
 # Prevent tmux from export the path again
 if [ "$_SKIP_PROFILE" ]
 then
