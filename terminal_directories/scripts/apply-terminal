@@ -72,9 +72,9 @@ then
   $su rm $target/powerline-daemon
 fi
 
-if [[ -h $target/../../powerline-daemon/powerline ]]
+if [[ -h $target/powerline ]]
 then
-  $su rm $target/../../powerline-daemon/powerline
+  $su rm $target/powerline
 fi
 
 if [[ -h $target/powerline-client ]]
@@ -82,8 +82,8 @@ then
   $su rm $target/powerline-client
 fi
 
-echo -e "${yellow} ln -s $target/../../powerline/powerline $target/../../powerline-daemon/powerline${white}"
-ln -s $target/../../powerline/powerline $target/../../powerline-daemon/powerline
+echo -e "${yellow} ln -s $target/../../powerline/powerline $target/powerline${white}"
+ln -s $target/../../powerline/powerline $target/powerline
 
 echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon${white}"
 ln -s $target/../../powerline-daemon/powerline-daemon $target/powerline-daemon
