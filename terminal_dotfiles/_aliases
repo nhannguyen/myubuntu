@@ -35,6 +35,9 @@ alias submodule='git submodule'
 # SimpleHTTPServer python to easily share files
 alias http='python -m SimpleHTTPServer'
 
+# Twistd is better
+alias twistd='twistd -n web --path .'
+
 # Aliases for tmux
 alias attach='tmux attach'
 alias detach='tmux detach'
