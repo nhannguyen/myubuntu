@@ -93,21 +93,6 @@ echo -e "${yellow} ln -s $target/../../powerline-daemon/powerline-client $target
 ln -s $target/../../powerline-daemon/powerline-client $target/powerline-client
 
 ################################################################################
-echo -e "${green}Creating powerline configuration files${white}"
-
-if [[ -h $home_dir/.config/powerline ]]
-then
-  echo -e "${yellow}$su rm $home_dir/.config/powerline${white}"
-  $su rm $home_dir/.config/powerline
-elif [[ -d $home_dir/.config/powerline ]]
-then
-  echo -e "${yellow}$su mv $home_dir/.config/powerline $home_dir/.config/powerline.old${white}"
-  $su mv $home_dir/.config/powerline $home_dir/.config/powerline.old
-fi
-echo -e "${yellow}$su ln -s $target/../../powerline_config $home_dir/.config/powerline${white}"
-$su ln -s $target/../../powerline_config $home_dir/.config/powerline
-
-
 echo -e "${green}Linking dotfiles${white}"
 
 for dotfile in ${terminal_dotfiles[@]}
