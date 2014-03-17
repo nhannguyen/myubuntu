@@ -15,6 +15,11 @@ else
   prompt adam1
 fi
 
+# Print an empty line after each command
+precmd() {
+  print ""
+}
+
 
 setopt histignorealldups sharehistory
 
