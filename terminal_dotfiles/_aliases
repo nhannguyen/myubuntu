@@ -53,4 +53,4 @@ alias reboot='sudo reboot'
 alias shutdown='sudo shutdown -P now'
 
 # Highlight cat
-alias cat='pygmentize -f 256 -O style=native -g'
+alias cat='pygmentize -f 256 -O style=solarizeddark -g'
