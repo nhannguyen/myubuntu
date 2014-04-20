@@ -123,3 +123,8 @@ do
   echo -e "${yellow}$su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory${white}"
   $su ln -s $target/../../terminal_directories/$terminal_directory $home_dir/.$terminal_directory
 done
+
+################################################################################
+echo -e "${green}Solarized ls colors${white}"
+echo -e "${yellow}git clone https://github.com/seebi/dircolors-solarized${white}"
+git clone https://github.com/seebi/dircolors-solarized

@@ -124,3 +124,8 @@ if has("autocmd")
       \ endif
   augroup END
 endif
+
+" Solarized theme
+let g:solarized_termcolors=16
+set background=dark
+color solarized
