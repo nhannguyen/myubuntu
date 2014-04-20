@@ -126,5 +126,12 @@ done
 
 ################################################################################
 echo -e "${green}Solarized ls colors${white}"
-echo -e "${yellow}git clone https://github.com/seebi/dircolors-solarized${white}"
-git clone https://github.com/seebi/dircolors-solarized
+if [[ -d ~/dircolors-solarized ]]
+then
+  cd ~/dircolors-solarized
+  git fetch
+  git merge origin/master
+else
+  echo -e "${yellow}  git clone https://github.com/seebi/dircolors-solarized${white}"
+  git clone https://github.com/seebi/dircolors-solarized ~/dircolors-solarized
+fi
