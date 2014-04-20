@@ -75,3 +75,6 @@ alias update='sudo apt-get update && sudo apt-get -y upgrade'
 # Shutdown and reboot
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown -P now'
+
+# Highlight cat
+alias cat='pygmentize -f 256 -O style=native -g'
