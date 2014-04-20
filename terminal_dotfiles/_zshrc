@@ -78,6 +78,9 @@ setopt NO_BEEP
 # Syntax highlighting
 source $HOME/.zsh_highlight
 
+# Solarized colors for ls
+eval `dircolors $HOME/dircolors-solarized/dircolors.256dark`
+
 # More PATH
 SCRIPTS=$HOME/.scripts
 POWERLINE_SCRIPT_DIR=$HOME/myubuntu/powerline/scripts
